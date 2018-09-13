@@ -1,7 +1,7 @@
 <template>
   <div id="addProfile">
     <h1> Add new workplace profile </h1>
-    <form>
+    <form v-if="!submitted">
       <label>Name:</label>
       <input type="text" v-model.lazy="worker.name" required/>
       <label>Surname:</label>
@@ -25,7 +25,10 @@
 
     </form>
 
-    <button>Submit</button>
+    <button v-on:click.prevent="submit">Add Profile</button>
+    <div v-if="submitted">
+      <h4>Profile added</h4>
+    </div>
     <div id="preview">
       <h4>{{ worker.name }}</h4>
       <p>{{ worker.surname }}</p>
@@ -55,11 +58,24 @@ export default {
       },
       types: ['Junior', 'Senior', 'Expert'],
       departaments: ['Finance', 'Marketing', 'Sales'],
-      positions: ['Coffee guy', 'Manager', 'Associate']
+      positions: ['Coffee guy', 'Manager', 'Associate'],
+      submitted: false
     }
   },
   methods: {
-
+      submit: function(){
+        this.$http.post('firebase link', {
+          title: this.worker.title,
+          name: this.worker.name,
+          surname: this.worker.surname,
+          departament: this.worker.departament,
+          phonenumber: this.worker.phonenumber,
+          location: this.worker.location
+        }).then(function(data){
+          console.log(data)
+          this.submitted = true
+        })
+      }
     }
 
   }
