@@ -8,17 +8,20 @@
       <input type="text" v-model.lazy="worker.surname"/>
       <label>Phone number:</label>
       <input type="text" v-model.lazy="worker.phonenumber"/>
+      <label>Location:</label>
+      <input type="text" v-model.lazy="worker.location"/>
       <label>Departament:</label>
       <select v-model="worker.departament">
         <option v-for="departament in departaments">{{ departament }}</option>
+      </select>
+      <label>Position:</label>
+      <select v-model="worker.position">
+        <option v-for="position in positions">{{ position }}</option>
       </select>
       <label>Type:</label>
       <select v-model="worker.type">
         <option v-for="type in types">{{ type }}</option>
       </select>
-
-      <label>Temporary: </label>
-      <input type="checkbox" v-model="temp" true-value="yes" false-value="no">
 
     </form>
 
@@ -26,10 +29,11 @@
     <div id="preview">
       <h4>{{ worker.name }}</h4>
       <p>{{ worker.surname }}</p>
-      <ul>
-        <li v-for="cat in worker.category">{{ cat }}</li>
-      </ul>
-      <p> {{ worker.author }} </p>
+      <p>{{ worker.phonenumber }}</p>
+      <p>{{ worker.location }}</p>
+      <p>{{ worker.departament }}</p>
+      <p>{{ worker.position }}</p>
+      <p>{{ worker.type }}</p>
     </div>
   </div>
 </template>
@@ -47,10 +51,11 @@ export default {
         surname: '',
         departament: '',
         phonenumber: '',
-        temp: ''
+        location: ''
       },
-      types: ['Jack', 'Green', 'Em'],
-      departaments: ['Finance', 'Marketing', 'Sales']
+      types: ['Junior', 'Senior', 'Expert'],
+      departaments: ['Finance', 'Marketing', 'Sales'],
+      positions: ['Coffee guy', 'Manager', 'Associate']
     }
   },
   methods: {
