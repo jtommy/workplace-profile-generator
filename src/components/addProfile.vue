@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import db from './firebaseInit'
 export default {
   components: {
 
@@ -49,12 +50,13 @@ export default {
   data () {
     return {
       worker: {
-        type: '',
-        name: '',
-        surname: '',
-        departament: '',
-        phonenumber: '',
-        location: ''
+        type: null,
+        name: null,
+        surname: null,
+        departament: null,
+        phonenumber: null,
+        location: null,
+        position: null
       },
       types: ['Junior', 'Senior', 'Expert'],
       departaments: ['Finance', 'Marketing', 'Sales'],
@@ -64,21 +66,21 @@ export default {
   },
   methods: {
       submit: function(){
-        this.$http.post('firebase link', {
-          title: this.worker.title,
+        db.collection('workers').add({
+          type: this.worker.type,
           name: this.worker.name,
           surname: this.worker.surname,
           departament: this.worker.departament,
-          phonenumber: this.worker.phonenumber,
-          location: this.worker.location
-        }).then(function(data){
-          console.log(data)
-          this.submitted = true
-        })
+          phone: this.worker.phonenumber,
+          location: this.worker.location,
+          position: this.worker.position
+        }).then(docRef =>
+          this.submitted= true)
+
+
+        }
       }
     }
-
-  }
 </script>
 
 <style scoped>

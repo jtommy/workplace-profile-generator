@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import db from './firebaseInit'
 export default {
   components: {
 
@@ -22,9 +23,20 @@ export default {
 
   },
   created() {
-    this.$http.get('firebase link').then(function(data){
-      this.profiles = data.body.slice(0,5)
-    })
+      db.collection('workers').get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          const data = {
+            'id': doc.id,
+            'type': doc.data().type,
+            'name': doc.data().name,
+            'surname': doc.data().surname,
+            'departament': doc.data().departament,
+            'phonenumber': doc.data().phonenumber,
+            'location': doc.data().location
+          }
+          this.profiles.push(data)
+        })
+      })
     }
   }
 </script>
