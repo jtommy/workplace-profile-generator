@@ -1,11 +1,11 @@
 <template>
-  <div id="listProfiles">
+<div id="listProfiles" class="container">
   <h1> Profiles </h1>
   <div v-for="profile in profiles" class="profile">
     <h4> {{profile.name}} </h4>
     <p> {{profile.surname}} </p>
   </div>
-  </div>
+</div>
 </template>
 
 <script>
@@ -14,7 +14,7 @@ export default {
   components: {
 
   },
-  data () {
+  data() {
     return {
       profiles: []
     }
@@ -23,22 +23,22 @@ export default {
 
   },
   created() {
-      db.collection('workers').get().then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          const data = {
-            'id': doc.id,
-            'type': doc.data().type,
-            'name': doc.data().name,
-            'surname': doc.data().surname,
-            'departament': doc.data().departament,
-            'phonenumber': doc.data().phonenumber,
-            'location': doc.data().location
-          }
-          this.profiles.push(data)
-        })
+    db.collection('workers').get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        const data = {
+          'id': doc.id,
+          'type': doc.data().type,
+          'name': doc.data().name,
+          'surname': doc.data().surname,
+          'departament': doc.data().departament,
+          'phonenumber': doc.data().phonenumber,
+          'location': doc.data().location
+        }
+        this.profiles.push(data)
       })
-    }
+    })
   }
+}
 </script>
 
 <style scoped>

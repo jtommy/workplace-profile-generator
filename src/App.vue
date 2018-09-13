@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <vue-header/>
-    <router-view></router-view>
-  </div>
+<div >
+  <vue-header/>
+  <router-view></router-view>
+</div>
 </template>
 
 <script>
@@ -12,21 +12,21 @@ import header from './components/header.vue'
 export default {
   components: {
     'vue-header': header,
-    'add-profile':addProfile,
+    'add-profile': addProfile,
     'list-profiles': listProfiles,
   },
-  data () {
+  data() {
     return {
 
     }
   },
   methods: {
 
-    }
-
   }
+
+}
 </script>
 
-<style>
+<style scoped>
 
 </style>
