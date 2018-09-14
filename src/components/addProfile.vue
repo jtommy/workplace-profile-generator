@@ -3,95 +3,112 @@
   <div v-if="submitted">
     <h4>Profile added</h4>
   </div>
-  <div id="addProfile" class="container is-fluid">
-    <div class="columns">
-      <div class="column">
-        <div class="container  has-text-centered">
-              <h1 class="title">
-                Add new worker
+  <div id="addProfile" class="container is-fullhd">
+    <div class="notification">
+      <div class="columns">
+        <div class="column">
+          <div class="has-text-centered">
+            <h1 class="title">
+                Add profile
               </h1>
-        </div>
-        <form v-if="!submitted">
-          <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Name" v-model.lazy="worker.name" />
-            </div>
           </div>
-          <div class="field">
-            <label class="label">Surname</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Surname" v-model.lazy="worker.surname" />
+          <form v-if="!submitted">
+            <div class="field">
+              <label class="label">Name</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Name" v-model.lazy="worker.name" />
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <label class="label">Phone number</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Phone number" v-model.lazy="worker.phonenumber" />
+            <div class="field">
+              <label class="label">Surname</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Surname" v-model.lazy="worker.surname" />
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <label class="label">Location</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Location" v-model.lazy="worker.location" required/>
+            <div class="field">
+              <label class="label">Phone number</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Phone number" v-model.lazy="worker.phonenumber" />
+              </div>
             </div>
-          </div>
-          <div class="columns">
-            <div class="column">
-              <div class="field">
-                <label class="label">Departament</label>
-                <div class="control">
-                  <div class="select">
-                    <select>
+            <div class="field">
+              <label class="label">Country</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Country" v-model.lazy="worker.country" required/>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label">Departament</label>
+                  <div class="control">
+                    <div class="select">
+                      <select>
                   <option selected="true" disabled="disabled">Departament</option>
                   <option v-for="departament in departaments">{{ departament }}</option>
                 </select>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="column">
-              <div class="field">
-                <label class="label">Rank</label>
-                <div class="control">
-                  <div class="select">
-                    <select>
+              <div class="column">
+                <div class="field">
+                  <label class="label">Rank</label>
+                  <div class="control">
+                    <div class="select">
+                      <select>
                   <option selected="true" disabled="disabled">Rank</option>
                   <option v-for="type in types">{{ type }}</option>
                 </select>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="column">
-              <div class="field">
-                <label class="label">Position</label>
-                <div class="control">
-                  <div class="select">
-                    <select>
+              <div class="column">
+                <div class="field">
+                  <label class="label">Position</label>
+                  <div class="control">
+                    <div class="select">
+                      <select>
                   <option selected="true" disabled="disabled">Position</option>
                   <option v-for="position in positions">{{ position }}</option>
                 </select>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </form>
+        </div>
+        <div class="column" id="preview">
+          <div class="has-text-centered">
+            <h1 class="title">
+                Profile preview
+              </h1>
           </div>
-        </form>
-          <div class="control">
-            <button v-on:click.prevent="submit" class="button is-fullwidth is-link">Submit</button>
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-info">
+              <p class="title" v-if="!worker.name">Name Surname</p>
+              <p class="title">{{worker.name}} {{worker.surname}}</p>
+              </p>
+              <p class="subtitle">
+                {{ worker.departament }} {{ worker.type }} {{ worker.position }}
+              </p>
+              <p class="subtitle">
+                {{ worker.phonenumber }}
+              </p>
+              <figure class="image is-5by4">
+                <img src="https://bulma.io/images/placeholders/640x480.png">
+              </figure>
+            </article>
           </div>
+        </div>
       </div>
-      <div class="column" id="preview">
-        <h4>{{ worker.name }}</h4>
-        <p>{{ worker.surname }}</p>
-        <p>{{ worker.phonenumber }}</p>
-        <p>{{ worker.location }}</p>
-        <p>{{ worker.departament }}</p>
-        <p>{{ worker.position }}</p>
-        <p>{{ worker.type }}</p>
+      <div class="control">
+        <button v-on:click.prevent="submit" class="button is-fullwidth is-link">Submit</button>
       </div>
     </div>
+  </div>
   </div>
 </section>
 </template>
@@ -110,7 +127,7 @@ export default {
         surname: null,
         departament: null,
         phonenumber: null,
-        location: null,
+        country: null,
         position: null
       },
       types: ['Junior', 'Senior', 'Expert'],
@@ -127,7 +144,7 @@ export default {
         surname: this.worker.surname,
         departament: this.worker.departament,
         phone: this.worker.phonenumber,
-        location: this.worker.location,
+        country: this.worker.country,
         position: this.worker.position
       }).then(docRef =>
         this.submitted = true)
@@ -143,9 +160,11 @@ export default {
   margin: 10px auto;
 
 }
+
 select option:disabled {
-    color: gray;
+  color: gray;
 }
+
 button {
   margin: 10px 0 0 0;
 }
