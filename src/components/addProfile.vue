@@ -16,13 +16,7 @@
             <div class="field">
               <label class="label">Name</label>
               <div class="control">
-                <input class="input" type="text" placeholder="Name" v-model.lazy="worker.name" />
-              </div>
-            </div>
-            <div class="field">
-              <label class="label">Surname</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="Surname" v-model.lazy="worker.surname" />
+                <input ref="name" class="input" type="text" placeholder="Name" v-model.lazy="worker.name" />
               </div>
             </div>
             <div class="field">
@@ -43,8 +37,7 @@
                   <label class="label">Departament</label>
                   <div class="control">
                     <div class="select">
-                      <select>
-                  <option selected="true" disabled="disabled">Departament</option>
+                      <select v-model="worker.departament">
                   <option v-for="departament in departaments">{{ departament }}</option>
                 </select>
                     </div>
@@ -56,8 +49,7 @@
                   <label class="label">Rank</label>
                   <div class="control">
                     <div class="select">
-                      <select>
-                  <option selected="true" disabled="disabled">Rank</option>
+                  <select v-model="worker.type">
                   <option v-for="type in types">{{ type }}</option>
                 </select>
                     </div>
@@ -69,8 +61,7 @@
                   <label class="label">Position</label>
                   <div class="control">
                     <div class="select">
-                      <select>
-                  <option selected="true" disabled="disabled">Position</option>
+                  <select v-model="worker.position">
                   <option v-for="position in positions">{{ position }}</option>
                 </select>
                     </div>
@@ -88,8 +79,8 @@
           </div>
           <div class="tile is-parent">
             <article class="tile is-child notification is-info">
-              <p class="title" v-if="!worker.name">Name Surname</p>
-              <p class="title">{{worker.name}} {{worker.surname}}</p>
+              <p class="title" v-if="!worker.name">John Doe</p>
+              <p class="title">{{worker.name}}</p>
               </p>
               <p class="subtitle">
                 {{ worker.departament }} {{ worker.type }} {{ worker.position }}
@@ -124,7 +115,6 @@ export default {
       worker: {
         type: null,
         name: null,
-        surname: null,
         departament: null,
         phonenumber: null,
         country: null,
@@ -133,21 +123,38 @@ export default {
       types: ['Junior', 'Senior', 'Expert'],
       departaments: ['Finance', 'Marketing', 'Sales'],
       positions: ['Coffee guy', 'Manager', 'Associate'],
-      submitted: false
+      submitted: false,
+      errors: []
     }
   },
   methods: {
+    checkSubmit: function(e) {
+      this.errors = []
+
+      if (this.worker.name) {
+        return true
+      }
+
+      if (!this.worker.name) {
+        this.$refs.name.focus()
+        this.errors.push('Name field is empty')
+      }
+      e.preventDefault();
+
+    },
     submit: function() {
-      db.collection('workers').add({
-        type: this.worker.type,
-        name: this.worker.name,
-        surname: this.worker.surname,
-        departament: this.worker.departament,
-        phone: this.worker.phonenumber,
-        country: this.worker.country,
-        position: this.worker.position
-      }).then(docRef =>
-        this.submitted = true)
+      if (this.checkSubmit()) {
+        db.collection('workers').add({
+          type: this.worker.type,
+          name: this.worker.name,
+          departament: this.worker.departament,
+          phone: this.worker.phonenumber,
+          country: this.worker.country,
+          position: this.worker.position
+        }).then(docRef =>
+          this.submitted = true)
+
+      }
 
 
     }

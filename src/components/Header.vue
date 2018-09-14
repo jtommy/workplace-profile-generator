@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-info" role="navigation" aria-label="main navigation">
     <div class="container is-fluid">
       <div class="navbar-brand">
         <router-link to="/" class="navbar-item" id="logo">GoManage!</router-link>
