@@ -14,6 +14,7 @@
       <div class="navbar-end" @click="isActive=false">
         <router-link to="/" class="navbar-item">Home</router-link>
         <router-link to="/add" class="navbar-item">Profiles</router-link>
+        <router-link to="/settings" class="navbar-item">Settings</router-link>
       </div>
     </div>
   </nav>

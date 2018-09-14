@@ -62,7 +62,7 @@
                   <div class="control">
                     <div class="select">
                   <select v-model="worker.position">
-                  <option v-for="position in positions">{{ position }}</option>
+                  <option v-for="position in positions">{{ position.title }}</option>
                 </select>
                     </div>
                   </div>
@@ -122,7 +122,7 @@ export default {
       },
       types: ['Junior', 'Senior', 'Expert'],
       departaments: ['Finance', 'Marketing', 'Sales'],
-      positions: ['Coffee guy', 'Manager', 'Associate'],
+      positions: [],
       submitted: false,
       errors: []
     }
@@ -153,11 +153,19 @@ export default {
           position: this.worker.position
         }).then(docRef =>
           this.submitted = true)
-
       }
-
-
     }
+  },
+  created() {
+    db.collection('Positions').get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        const data = {
+          'id': doc.id,
+          'title': doc.data().title,
+        }
+        this.positions.push(data)
+      })
+    })
   }
 }
 </script>
