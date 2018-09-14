@@ -10,12 +10,16 @@ import addProfile from './components/addProfile.vue'
 import listProfiles from './components/listProfiles.vue'
 import header from './components/Header.vue'
 import settings from './components/Settings.vue'
+import login from './components/Login.vue'
+import signup from './components/Signup.vue'
 export default {
   components: {
     'vue-header': header,
     'add-profile': addProfile,
     'list-profiles': listProfiles,
-    'settings' : settings
+    'settings' : settings,
+    'login' : login,
+    'signup': signup
   },
   data() {
     return {

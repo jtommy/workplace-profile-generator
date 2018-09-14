@@ -15,24 +15,35 @@
         <router-link to="/" class="navbar-item">Home</router-link>
         <router-link to="/add" class="navbar-item">Profiles</router-link>
         <router-link to="/settings" class="navbar-item">Settings</router-link>
+        <router-link to="/" v-on:click.native="logout" class="navbar-item">Log out</router-link>
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-
+import firebase from 'firebase'
 export default {
   data () {
     return {
-      isActive: false
+      isActive: false,
     }
   },
   methods: {
     expandMenu: function(){
       this.isActive = !this.isActive
-    }
-  }
+    },
+   logout: function() {
+     firebase
+       .auth()
+       .signOut()
+       .then(() => {
+         console.log('log')
+         this.$router.replace("/login");
+       });
+   }
+  },
+
 }
 </script>
 
