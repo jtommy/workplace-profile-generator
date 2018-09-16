@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import VueResource from 'vue-resource'
-import router from './routes'
+import axios from 'axios'
 import Buefy from 'buefy'
+import vSelect from 'vue-select'
+import firebase from 'firebase'
 import 'buefy/dist/buefy.css'
 import {
   library
@@ -14,23 +16,24 @@ import {
   FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
 
-import axios from 'axios'
 
 
-import firebase from 'firebase'
+
+//My Components
+import router from './routes'
 import db from './components//firebaseInit'
-import vSelect from 'vue-select'
 
+//My Reusable components
 import userCard from './components/userCard.vue'
+
 
 Vue.use(Buefy)
 Vue.use(VueResource)
 
-
 library.add(faUser, faPhone, faGlobe)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-Vue.component('v-select', vSelect)
 
+Vue.component('v-select', vSelect)
 
 Vue.component('userCard', userCard)
 Vue.config.productionTip = false

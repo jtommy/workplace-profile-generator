@@ -19,7 +19,7 @@
                 <input ref="name" class="input" type="text" placeholder="Name" v-model.lazy="worker.name" />
                 <span class="icon is-small is-left">
                   <font-awesome-icon icon="user" />
-   </span>
+                </span>
               </div>
             </div>
             <div class="field">
@@ -85,8 +85,8 @@
             <h1 class="title">
                 Profile preview
               </h1>
-            </div>
-            <userCard v-bind:worker="worker"/>
+          </div>
+          <userCard v-bind:worker="worker" />
         </div>
       </div>
       <div class="control">
