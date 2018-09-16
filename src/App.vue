@@ -13,7 +13,7 @@ import settings from './components/Settings.vue'
 import login from './components/Login.vue'
 import signup from './components/Signup.vue'
 import userCard from './components/userCard.vue'
-
+import homeScreen from './components/homeScreen.vue'
 
 
 
@@ -25,7 +25,8 @@ export default {
     'settings' : settings,
     'login' : login,
     'signup': signup,
-    'userCard': userCard
+    'userCard': userCard,
+    'homeScreen': homeScreen
   },
   data() {
     return {

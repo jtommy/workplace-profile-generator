@@ -2,7 +2,7 @@
 <section class="hero is-fullheight">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <div class="column is-4 is-offset-4">
+      <div class="column is-6 is-offset-3">
         <h2 class="title">GoManage! Login</h2>
         <div>
           <div class="box">

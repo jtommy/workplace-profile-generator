@@ -8,7 +8,7 @@ import settings from './components/Settings.vue'
 import login from './components/Login.vue'
 import signup from './components/Signup.vue'
 import db from './components/firebaseInit'
-
+import homeScreen from './components/homeScreen.vue'
 Vue.use(Router)
 let router = new Router({
   mode: 'history',
@@ -35,7 +35,7 @@ let router = new Router({
     },
     {
       path: '/',
-      component:  listProfiles,
+      component:  homeScreen,
       meta: {
         auth: true
       }
@@ -50,6 +50,13 @@ let router = new Router({
     {
       path: '/settings',
       component: settings,
+      meta: {
+        auth: true
+      }
+    },
+    {
+      path: '/list',
+      component: listProfiles,
       meta: {
         auth: true
       }
