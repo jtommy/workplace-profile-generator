@@ -1,6 +1,6 @@
 {
-  "name": "testpro",
-  "description": "A Vue.js project",
+  "name": "profile-generator",
+  "description": "Generate your own ID",
   "version": "1.0.0",
   "author": "",
   "license": "MIT",
