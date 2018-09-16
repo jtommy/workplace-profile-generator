@@ -12,6 +12,7 @@ import header from './components/Header.vue'
 import settings from './components/Settings.vue'
 import login from './components/Login.vue'
 import signup from './components/Signup.vue'
+import userCard from './components/userCard.vue'
 export default {
   components: {
     'vue-header': header,
@@ -19,7 +20,8 @@ export default {
     'list-profiles': listProfiles,
     'settings' : settings,
     'login' : login,
-    'signup': signup
+    'signup': signup,
+    'userCard': userCard,
   },
   data() {
     return {

@@ -21,7 +21,7 @@ import firebase from 'firebase'
 import db from './components//firebaseInit'
 import vSelect from 'vue-select'
 
-
+import userCard from './components/userCard.vue'
 
 Vue.use(Buefy)
 Vue.use(VueResource)
@@ -31,6 +31,8 @@ library.add(faUser, faPhone, faGlobe)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('v-select', vSelect)
 
+
+Vue.component('userCard', userCard)
 Vue.config.productionTip = false
 
 let app;

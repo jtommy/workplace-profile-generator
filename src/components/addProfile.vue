@@ -85,26 +85,8 @@
             <h1 class="title">
                 Profile preview
               </h1>
-          </div>
-          <div class="tile is-parent">
-            <article class="tile is-child notification is-info">
-              <p class="title" v-if="!worker.name">John Doe</p>
-              <p class="title">{{worker.name}}</p>
-              </p>
-              <p class="subtitle">
-                {{ worker.type }} {{ worker.departament }} {{ worker.position }}
-              </p>
-              <p class="subtitle">
-                {{ worker.phonenumber }}
-              </p>
-              <p class="subtitle">
-                {{ worker.country.name }}
-              </p>
-              <figure class="image is-5by4">
-                <img src="https://bulma.io/images/placeholders/640x480.png">
-              </figure>
-            </article>
-          </div>
+            </div>
+            <userCard v-bind:worker="worker"/>
         </div>
       </div>
       <div class="control">
@@ -120,7 +102,6 @@
 import db from './firebaseInit'
 import axios from 'axios'
 import vSelect from 'vue-select'
-
 export default {
   data() {
     return {
