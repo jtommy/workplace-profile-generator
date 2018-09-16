@@ -13,6 +13,10 @@ import settings from './components/Settings.vue'
 import login from './components/Login.vue'
 import signup from './components/Signup.vue'
 import userCard from './components/userCard.vue'
+
+
+
+
 export default {
   components: {
     'vue-header': header,
@@ -21,7 +25,7 @@ export default {
     'settings' : settings,
     'login' : login,
     'signup': signup,
-    'userCard': userCard,
+    'userCard': userCard
   },
   data() {
     return {

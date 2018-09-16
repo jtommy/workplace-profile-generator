@@ -106,6 +106,7 @@ export default {
   data() {
     return {
       worker: {
+        id: Math.floor((Math.random() * 10) + 1),
         type: null,
         name: null,
         departament: null,
@@ -146,6 +147,7 @@ export default {
     submit: function() {
       if (this.checkSubmit()) {
         db.collection('workers').add({
+          id: Math.floor((Math.random() * 1000) + 1),
           type: this.worker.type,
           name: this.worker.name,
           departament: this.worker.departament,
