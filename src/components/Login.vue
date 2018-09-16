@@ -9,13 +9,14 @@
             <div class="">
               <form>
                 <div class="field">
+                  <label class="label"> Test user with Admin privileges</label>
                   <div class="control">
-                    <input v-model="email" class="input" type="text" placeholder="Email">
+                    <input v-model="email" class="input" type="text" disabled placeholder="Email">
                   </div>
                 </div>
                 <div class="field">
                   <div class="control">
-                    <input v-model="pass" class="input" type="password" placeholder="Password">
+                    <input v-model="pass" class="input" type="password" disabled placeholder="Password">
                   </div>
                 </div>
                 <div>
@@ -43,8 +44,8 @@ export default {
   },
   data() {
     return {
-      email: null,
-      pass: null
+      email: "admin@admin.com",
+      pass: "admin@admin.com"
     }
   },
   methods: {
@@ -62,8 +63,7 @@ export default {
         );
     }
   },
-  created() {
-  }
+  created() {}
 }
 </script>
 
