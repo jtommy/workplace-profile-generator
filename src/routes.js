@@ -11,6 +11,7 @@ import db from './components/firebaseInit'
 
 Vue.use(Router)
 let router = new Router({
+  base: '/',
   mode: 'history',
   routes: [{
       path: '*',
