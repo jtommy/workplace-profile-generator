@@ -15,30 +15,39 @@
           <form v-if="!submitted">
             <div class="field">
               <label class="label">Name</label>
-              <div class="control">
+              <div class="control has-icons-left ">
                 <input ref="name" class="input" type="text" placeholder="Name" v-model.lazy="worker.name" />
+                <span class="icon is-small is-left">
+                  <font-awesome-icon icon="user" />
+   </span>
               </div>
             </div>
             <div class="field">
               <label class="label">Phone number</label>
-              <div class="control">
+              <div class="control has-icons-left">
                 <input class="input" type="text" placeholder="Phone number" v-model.lazy="worker.phonenumber" />
+                <span class="icon is-small is-left">
+                  <font-awesome-icon icon="phone" />
+                </span>
               </div>
             </div>
             <div class="field">
               <label class="label">Country</label>
-              <div class="control">
-                <input class="input" type="text" placeholder="Country" v-model.lazy="worker.country" required/>
+              <div class="control has-icons-left">
+                <v-select class="" label="name" v-model="worker.country" :options="countries"></v-select>
+                <span class="icon is-small is-left">
+                  <font-awesome-icon icon="globe" />
+                </span>
               </div>
             </div>
             <div class="columns">
               <div class="column">
                 <div class="field">
-                  <label class="label">Departament</label>
+                  <label class="label">Rank</label>
                   <div class="control">
                     <div class="select">
-                      <select v-model="worker.departament">
-                  <option v-for="departament in departaments">{{ departament }}</option>
+                      <select v-model="worker.type">
+                  <option v-for="type in types">{{ type }}</option>
                 </select>
                     </div>
                   </div>
@@ -46,11 +55,11 @@
               </div>
               <div class="column">
                 <div class="field">
-                  <label class="label">Rank</label>
+                  <label class="label">Departament</label>
                   <div class="control">
                     <div class="select">
-                  <select v-model="worker.type">
-                  <option v-for="type in types">{{ type }}</option>
+                      <select v-model="worker.departament">
+                  <option v-for="departament in departaments">{{ departament.title }}</option>
                 </select>
                     </div>
                   </div>
@@ -61,7 +70,7 @@
                   <label class="label">Position</label>
                   <div class="control">
                     <div class="select">
-                  <select v-model="worker.position">
+                      <select v-model="worker.position">
                   <option v-for="position in positions">{{ position.title }}</option>
                 </select>
                     </div>
@@ -83,10 +92,13 @@
               <p class="title">{{worker.name}}</p>
               </p>
               <p class="subtitle">
-                {{ worker.departament }} {{ worker.type }} {{ worker.position }}
+                {{ worker.type }} {{ worker.departament }} {{ worker.position }}
               </p>
               <p class="subtitle">
                 {{ worker.phonenumber }}
+              </p>
+              <p class="subtitle">
+                {{ worker.country.name }}
               </p>
               <figure class="image is-5by4">
                 <img src="https://bulma.io/images/placeholders/640x480.png">
@@ -106,10 +118,10 @@
 
 <script>
 import db from './firebaseInit'
-export default {
-  components: {
+import axios from 'axios'
+import vSelect from 'vue-select'
 
-  },
+export default {
   data() {
     return {
       worker: {
@@ -117,21 +129,25 @@ export default {
         name: null,
         departament: null,
         phonenumber: null,
-        country: null,
+        country: {
+          'name': ''
+        },
         position: null
       },
-      types: ['Junior', 'Senior', 'Expert'],
-      departaments: ['Finance', 'Marketing', 'Sales'],
+      types: ['Junior', 'Senior'],
+      departaments: [],
       positions: [],
       submitted: false,
-      errors: []
+      errors: [],
+      countries: [],
+      selected: null
     }
   },
   methods: {
     checkSubmit: function(e) {
       this.errors = []
 
-      if (this.worker.name) {
+      if (this.worker.name && this.worker.departament && this.worker.position) {
         return true
       }
 
@@ -139,6 +155,10 @@ export default {
         this.$refs.name.focus()
         this.errors.push('Name field is empty')
       }
+      if (!(this.worker.departament && this.worker.position)) {
+        this.errors.push('Departament and position empty')
+      }
+      return false
       e.preventDefault();
 
     },
@@ -166,6 +186,20 @@ export default {
         this.positions.push(data)
       })
     })
+    db.collection('Departaments').get().then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        const data = {
+          'id': doc.id,
+          'title': doc.data().title,
+        }
+        this.departaments.push(data)
+      })
+    })
+  },
+  mounted() {
+    axios
+      .get('https://restcountries.eu/rest/v2/all')
+      .then(response => (this.countries = response.data))
   }
 }
 </script>
@@ -182,5 +216,13 @@ select option:disabled {
 
 button {
   margin: 10px 0 0 0;
+}
+
+.v-select {
+  background: #fff;
+}
+
+.v-select.open .dropdown-toggle {
+  border-color: #5cb3fd;
 }
 </style>

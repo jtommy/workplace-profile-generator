@@ -8,22 +8,28 @@ import {
   library
 } from '@fortawesome/fontawesome-svg-core'
 import {
-  faCoffee
+  faUser, faPhone, faGlobe
 } from '@fortawesome/free-solid-svg-icons'
 import {
   FontAwesomeIcon
 } from '@fortawesome/vue-fontawesome'
+
+import axios from 'axios'
+
+
 import firebase from 'firebase'
 import db from './components//firebaseInit'
-library.add(faCoffee)
+import vSelect from 'vue-select'
+
 
 
 Vue.use(Buefy)
 Vue.use(VueResource)
 
 
+library.add(faUser, faPhone, faGlobe)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-
+Vue.component('v-select', vSelect)
 
 Vue.config.productionTip = false
 
@@ -34,7 +40,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     app = new Vue({
       el: '#app',
       template: '<App/>',
-      components: { App }, router
+      components: {
+        App
+      },
+      router
     })
   }
 })
