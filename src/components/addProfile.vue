@@ -34,7 +34,7 @@
             <div class="field">
               <label class="label">Country</label>
               <div class="control has-icons-left">
-                <v-select class="" label="name" v-model="worker.country" :options="countries"></v-select>
+                <v-select class="vselect" label="name" v-model="worker.country" :options="countries"></v-select>
                 <span class="icon is-small is-left">
                   <font-awesome-icon icon="globe" />
                 </span>
@@ -201,11 +201,22 @@ button {
   margin: 10px 0 0 0;
 }
 
-.v-select {
+</style>
+<style>
+/*
+Styles for vselect module
+*/
+.v-select, .v-select.searchable .dropdown-toggle {
   background: #fff;
+  width: 100%;
+}
+.v-select input[type=search], .v-select input[type=search]:focus {
+  padding-left: 2.25em
 }
 
 .v-select.open .dropdown-toggle {
   border-color: #5cb3fd;
+
 }
+
 </style>
