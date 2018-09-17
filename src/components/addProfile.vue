@@ -152,7 +152,7 @@ export default {
           name: this.worker.name,
           departament: this.worker.departament,
           phone: this.worker.phonenumber,
-          country: this.worker.country,
+//          country: this.worker.country,
           position: this.worker.position
         }).then(docRef =>
           this.submitted = true)

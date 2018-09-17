@@ -1,20 +1,17 @@
 <template>
-<div id="listProfiles" class="container is-fluid">
+<div id="listworkers" class="container is-fluid">
   <div class="notification">
     <section class="hero is-info">
       <div class="hero-body">
-        <div class="container has-text-centered">
+        <div class="">
           <h1 class="title">
-            Workers
+            PROFILES
           </h1>
         </div>
       </div>
     </section>
-    <div class="container">
-      <div v-for="profile in profiles" class="profile">
-        <h4> {{profile.name}} </h4>
-        <p> {{profile.surname}} </p>
-      </div>
+    <div class="columns is-multiline" v-if="fetched">
+      <userCard class="column" v-for="worker in workers" v-bind:worker="worker" />
     </div>
   </div>
 </div>
@@ -28,7 +25,19 @@ export default {
   },
   data() {
     return {
-      profiles: []
+      worker: {
+        id: '',
+        type: '',
+        name: '',
+        departament: '',
+        phonenumber: '',
+        country: {
+          'name': ''
+        },
+        position: ''
+      },
+      workers: [],
+      fetched: false
     }
   },
   methods: {
@@ -43,11 +52,14 @@ export default {
           'name': doc.data().name,
           'surname': doc.data().surname,
           'departament': doc.data().departament,
-          'phonenumber': doc.data().phonenumber,
-          'location': doc.data().location
+          'phonenumber': doc.data().phonenumber
         }
-        this.profiles.push(data)
+        this.worker = data
+        this.workers.push(this.worker)
+        console.log(this.worker)
       })
+      this.fetched = true
+
     })
   }
 }

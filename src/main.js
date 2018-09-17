@@ -36,6 +36,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon)
 Vue.component('v-select', vSelect)
 
 Vue.component('userCard', userCard)
+
+
 Vue.config.productionTip = false
 
 let app;

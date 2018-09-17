@@ -13,7 +13,8 @@
   <div v-if="!hideLinks" id="nav" class="navbar-menu" v-bind:class="{'is-active': isActive}">
     <div class="navbar-end" @click="isActive=false">
       <router-link to="/" exact-active-class="is-active" class="navbar-item">Home</router-link>
-      <router-link to="/add" exact-active-class="is-active" class="navbar-item">Profiles</router-link>
+      <router-link to="/list" exact-active-class="is-active" class="navbar-item">Profiles</router-link>
+      <router-link to="/add" exact-active-class="is-active" class="navbar-item">Add profile</router-link>
       <router-link to="/settings" exact-active-class="is-active" class="navbar-item">Settings</router-link>
       <router-link to="/login" exact-active-class="is-active" v-on:click.native="logout" class="navbar-item">Log out</router-link>
     </div>

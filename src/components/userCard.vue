@@ -11,9 +11,6 @@
       <p class="subtitle">
         {{ worker.phonenumber }}
       </p>
-      <p class="subtitle">
-        {{ worker.country.name }}
-      </p>
       <figure class="image is-128x128 center-image">
         <img src="https://bulma.io/images/placeholders/256x256.png">
       </figure>
@@ -27,7 +24,7 @@
         {{ worker.type }} {{ worker.departament }} {{ worker.position }}
       </p>
       <div class="barcode">
-        <barcode text=" " lineColor="white" class="barcode" width="2" height="50" background="none" v-bind:value="worker.id">
+        <barcode text=" " lineColor="white" class="barcode" width="2" height="50" background="none" v-bind:value="worker.departament">
       </barcode>
       </div>
     </article>
