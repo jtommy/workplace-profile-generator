@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="control">
-        <button :disabled="submiting" v-on:click.prevent="submit" class="button is-fullwidth is-link">Submit</button>
+        <button v-on:click.prevent="submit" class="button is-fullwidth is-link">Submit</button>
       </div>
     </div>
   </div>
@@ -120,7 +120,6 @@ export default {
       departaments: [],
       positions: [],
       submitted: false,
-      submiting: false,
       errors: [],
       countries: [],
       selected: null
@@ -146,7 +145,6 @@ export default {
 
     },
     submit: function() {
-      this.submiting = true
       if (this.checkSubmit()) {
         db.collection('workers').add({
           id: Math.floor((Math.random() * 1000) + 1),
@@ -157,7 +155,6 @@ export default {
 //          country: this.worker.country,
           position: this.worker.position
         }).then(docRef =>
-          this.submiting = false,
           this.submitted = true)
       }
     }
