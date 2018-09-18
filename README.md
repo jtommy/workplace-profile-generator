@@ -1,6 +1,6 @@
 # Workplace ID generator
 
-# Live Link 
+# Live Link
 * [Live Heroku link](https://workplace-gen.herokuapp.com/)
 
 ## Introduction
@@ -17,6 +17,7 @@ Website generates ID cards when information is filled into the fields. After sub
 * [firebase](https://firebase.google.com/)
 * [express.js](https://expressjs.com/)
 * [buefy](https://buefy.github.io/)
+* [UI Avatars](https://github.com/LasseRafn/ui-avatars)
 
 
 

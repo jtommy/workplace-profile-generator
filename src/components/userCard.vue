@@ -12,7 +12,7 @@
         {{ worker.phonenumber }}
       </p>
       <figure class="image is-128x128 center-image">
-        <img src="https://bulma.io/images/placeholders/256x256.png">
+        <img v-bind:src="getImage">
       </figure>
       </br>
       <p class="title" v-if="!worker.name">John Doe</p>
@@ -44,6 +44,7 @@ export default {
     'barcode': VueBarcode
   },
   props: {
+    profileImg: 'null',
     worker: {
       type: Object
     }
@@ -56,6 +57,11 @@ export default {
   methods: {
     flipCard: function() {
       this.front = !this.front
+    }
+  },
+  computed: {
+    getImage: function() {
+      return 'https://ui-avatars.com/api/?size=128&rounded=true&name='+ this.worker.name
     }
   }
 }

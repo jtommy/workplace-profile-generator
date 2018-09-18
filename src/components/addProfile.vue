@@ -44,11 +44,14 @@
               <div class="column">
                 <div class="field">
                   <label class="label">Rank</label>
-                  <div class="control">
-                    <div class="select">
+                  <div class="control has-icons-left">
+                    <div class="select is-fullwidth">
                       <select v-model="worker.type">
                   <option v-for="type in types">{{ type }}</option>
                 </select>
+                <span class="icon is-small is-left">
+                  <font-awesome-icon icon="binoculars" />
+                </span>
                     </div>
                   </div>
                 </div>
@@ -56,11 +59,15 @@
               <div class="column">
                 <div class="field">
                   <label class="label">Departament</label>
-                  <div class="control">
-                    <div class="select">
+                  <div class="control has-icons-left">
+                    <div class="select is-fullwidth">
                       <select v-model="worker.departament">
                   <option v-for="departament in departaments">{{ departament.title }}</option>
                 </select>
+                <span class="icon is-small is-left">
+                  <font-awesome-icon icon="briefcase" />
+                </span>
+
                     </div>
                   </div>
                 </div>
@@ -68,12 +75,15 @@
               <div class="column">
                 <div class="field">
                   <label class="label">Position</label>
-                  <div class="control">
-                    <div class="select">
+                  <div class="control has-icons-left">
+                    <div class="select is-fullwidth">
                       <select v-model="worker.position">
                   <option v-for="position in positions">{{ position.title }}</option>
                 </select>
                     </div>
+                    <span class="icon is-small is-left">
+                      <font-awesome-icon icon="user"/>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -217,6 +227,9 @@ Styles for vselect module
 .v-select.open .dropdown-toggle {
   border-color: #5cb3fd;
 }
+.v-select .dropdown-toggle .clear {
+   visibility: hidden;
+ }
 
 
 

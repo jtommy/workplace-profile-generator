@@ -10,7 +10,7 @@ import {
   library
 } from '@fortawesome/fontawesome-svg-core'
 import {
-  faUser, faPhone, faGlobe
+  faUser, faPhone, faGlobe, faBinoculars, faBriefcase
 } from '@fortawesome/free-solid-svg-icons'
 import {
   FontAwesomeIcon
@@ -30,7 +30,7 @@ import userCard from './components/userCard.vue'
 Vue.use(Buefy)
 Vue.use(VueResource)
 
-library.add(faUser, faPhone, faGlobe)
+library.add(faUser, faPhone, faGlobe, faBinoculars, faBriefcase)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.component('v-select', vSelect)
