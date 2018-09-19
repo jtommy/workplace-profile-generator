@@ -1,7 +1,7 @@
 <template>
 <div class="usercard">
-  <div class="tile is-parent has-text-centered">
-    <b-tooltip  class="flipper" :active="isActive" type="is-black" label="Flip me!" position="is-top" always>
+  <div class="tile is-parent unselectable has-text-centered ">
+    <b-tooltip  class="flipper" :active="isActive" type="is-black" label="Click me!" position="is-top" always>
     </b-tooltip>
     <article v-if="front" @click="flipCard" class="tile is-child notification is-info">
       <p class="title">GoManage!</p>
@@ -78,6 +78,14 @@ export default {
 
 
 <style scoped>
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 .flipper {
   float: left
 }
@@ -92,6 +100,9 @@ export default {
 }
 .tile.is-parent{
   min-height: 550px;
+}
+article {
+    cursor: pointer;
 }
 
 </style>
