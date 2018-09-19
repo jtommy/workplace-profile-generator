@@ -1,8 +1,5 @@
 <template>
 <section class="section">
-  <div v-if="submitted">
-    <h4>Profile added</h4>
-  </div>
   <div id="addProfile" class="container is-fullhd">
     <div class="notification">
       <div class="columns">
@@ -12,7 +9,7 @@
                 Add profile
               </h1>
           </div>
-          <form v-if="!submitted">
+          <form>
             <div class="field">
               <label class="label">Name</label>
               <div class="control has-icons-left ">
@@ -49,7 +46,7 @@
                       <select v-model="worker.type">
                   <option v-for="type in types">{{ type }}</option>
                 </select>
-                <span class="icon is-small is-left">
+                      <span class="icon is-small is-left">
                   <font-awesome-icon icon="binoculars" />
                 </span>
                     </div>
@@ -64,10 +61,9 @@
                       <select v-model="worker.departament">
                   <option v-for="departament in departaments">{{ departament.title }}</option>
                 </select>
-                <span class="icon is-small is-left">
+                      <span class="icon is-small is-left">
                   <font-awesome-icon icon="briefcase" />
                 </span>
-
                     </div>
                   </div>
                 </div>
@@ -90,13 +86,13 @@
             </div>
           </form>
         </div>
-        <div class="column" id="preview">
+        <div class="column is-4" id="preview">
           <div class="has-text-centered">
             <h1 class="title">
                 Profile preview
               </h1>
           </div>
-          <userCard v-bind:worker="worker" />
+          <userCard v-bind:active=true v-bind:worker="worker" />
         </div>
       </div>
       <div class="control">
@@ -132,7 +128,8 @@ export default {
       submitted: false,
       errors: [],
       countries: [],
-      selected: null
+      selected: null,
+      loadingFullScreen: false,
     }
   },
   methods: {
@@ -162,10 +159,35 @@ export default {
           name: this.worker.name,
           departament: this.worker.departament,
           phone: this.worker.phonenumber,
-//          country: this.worker.country,
+          //          country: this.worker.country,
           position: this.worker.position
         }).then(docRef =>
           this.submitted = true)
+        this.$toast.open({
+          message: 'Successfully submitted!',
+          type: 'is-success'
+        })
+        this.clearForm()
+      } else {
+        this.$toast.open({
+          duration: 3500,
+          message: this.errors[0],
+          type: 'is-danger',
+          queue: false
+        })
+      }
+    },
+    clearForm: function() {
+      this.worker = {
+        id: Math.floor((Math.random() * 10) + 1),
+        type: null,
+        name: null,
+        departament: null,
+        phonenumber: null,
+        country: {
+          'name': ''
+        },
+        position: null
       }
     }
   },
@@ -193,7 +215,7 @@ export default {
     axios
       .get('https://restcountries.eu/rest/v2/all')
       .then(response => (this.countries = response.data))
-  }
+  },
 }
 </script>
 
@@ -216,21 +238,24 @@ button {
 /*
 Styles for vselect module
 */
-.v-select, .v-select.searchable .dropdown-toggle {
+
+.v-select,
+.v-select.searchable .dropdown-toggle {
   background: #fff;
   width: 100%;
 }
-.v-select input[type=search], .v-select input[type=search]:focus, .v-select .selected-tag{
+
+.v-select input[type=search],
+.v-select input[type=search]:focus,
+.v-select .selected-tag {
   padding-left: 2.25em
 }
 
 .v-select.open .dropdown-toggle {
   border-color: #5cb3fd;
 }
+
 .v-select .dropdown-toggle .clear {
-   visibility: hidden;
- }
-
-
-
+  visibility: hidden;
+}
 </style>
