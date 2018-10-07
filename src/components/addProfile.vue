@@ -258,4 +258,29 @@ Styles for vselect module
 .v-select .dropdown-toggle .clear {
   visibility: hidden;
 }
+
+/** Bulma style **/
+
+.v-select .open-indicator:before {
+  border-color: #3273dc;
+}
+
+.v-select .dropdown-toggle:focus {
+  border-color: #3273dc;
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+}
+
+.v-select .spinner {
+  border-left-color: #3273dc;
+}
+
+.v-select .dropdown-toggle .clear {
+  color: #3273dc;
+}
+
+.v-select.open .dropdown-toggle {
+  border-color: #3273dc;
+  box-shadow: 0 0 0 0.125em rgba(50, 115, 220, 0.25);
+}
+
 </style>
