@@ -13,7 +13,7 @@
             <div class="field">
               <label class="label">Name</label>
               <div class="control has-icons-left ">
-                <input ref="name" class="input" type="text" placeholder="Name" v-model.lazy="worker.name" />
+                <input ref="name" class="input" type="text" placeholder="Name" v-model.lazy.trim="worker.name" />
                 <span class="icon is-small is-left">
                   <font-awesome-icon icon="user" />
                 </span>
@@ -22,7 +22,7 @@
             <div class="field">
               <label class="label">Phone number</label>
               <div class="control has-icons-left">
-                <input class="input" type="text" placeholder="Phone number" v-model.lazy="worker.phonenumber" />
+                <input class="input" type="text" placeholder="Phone number" v-model.lazy.trim="worker.phonenumber" />
                 <span class="icon is-small is-left">
                   <font-awesome-icon icon="phone" />
                 </span>

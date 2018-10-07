@@ -29,7 +29,7 @@
                   <form>
                     <div class="field">
                       <div class="control">
-                        <input v-model='newDepTitle' class="input" type="text" placeholder="Name" />
+                        <input v-model.trim='newDepTitle' class="input" type="text" placeholder="Name" />
                       </div>
                     </div>
                   </form>
@@ -72,7 +72,7 @@
                   <form>
                     <div class="field">
                       <div class="control">
-                        <input v-model='newPosTitle' class="input" type="text" placeholder="Name" />
+                        <input v-model.trim='newPosTitle' class="input" type="text" placeholder="Name" />
                       </div>
                     </div>
                   </form>
